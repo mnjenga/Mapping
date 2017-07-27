@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fix-it Catalog</title>
+      <link rel="stylesheet" href="static/css/bootstrap.css" />
+      <link rel="stylesheet" href="static/css/style.css">
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <header>
+               <div class="col-xs-6">
+                  <img class="logo img-responsive" src="static/images/logo.svg" alt="My Startup logo in SVG">
+               </div>
+               <div class="col-xs-6 text-right text-uppercase">
+                  <h1 class="top-tittle" >Fix-it Catalog</h1>
+                  <div data-bind="click: showNav" class="right-nav">&#9776;</div>
+               </div>
+            </header>
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <hr class="top-line">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-2 left-nav" id="side-bar">
+               <select data-bind="options: categories, 
+                  optionsText:'catText', 
+                  optionsCaption: 'Choose Category',
+                  value: selectedItem">
+               </select>
+               <div class= "experts">
+                  <h4>Experts Near You</h4>
+                  <div data-bind = "foreach: markers" >
+                     <p class= "exp" data-bind = "text: title, click: showWindow"></p>
+                  </div>
+               </div>
+               <div class= "tips">
+                  <h4>DIY Tips</h4>
+                  <p>Source: New York Times</p>
+                  <div data-bind = "foreach: categoryTips" >
+                     <p class= "exp" data-bind = "html: $data"></p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-10">
+               <h3 class= "map-error" id="maperror">An error prevented Google map from Loading. Try again later</h3>
+               <div class= "map" id="map"></div>
+            </div>
+         </div>
+         <script src="static/js/app.js"></script>
+         <div class="row">
+            <div class="col-md-12">
+               <hr class="top-line">
+            </div>
+         </div>
+      </div>
+      <script 
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMh10KZg5qX2A-NSJreX9IakfvvYznCsM&callback=initMap"
+         async defer onerror="mapError()"></script>
+   </body>
+</html>
